@@ -1,7 +1,7 @@
 var test = require('grape'),
     propertyName = 'cps',
     createCpsFunction = require('../createCpsFunction'),
-    runTests = require('customulize/test/core');
+    runTests = require('customulize/test/runTests');
 
 function successTestCps(t, model, method) {
     model[propertyName][method](null, true, function(error, result) {
