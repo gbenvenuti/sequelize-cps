@@ -2,7 +2,8 @@
 
 Adds [CPS](http://en.wikipedia.org/wiki/Continuation-passing_style) functionality
 ([Error First](http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/))
-to sequelize via [customulize](https://www.npmjs.org/package/customulize) for cases when __.complete, .success, .save__ just aren't for you.
+to sequelize via [customulize](https://www.npmjs.org/package/customulize) for cases when promises just aren't for you.
+
 
 ##Installation
 
