@@ -15,4 +15,5 @@ function errorTestCps(t, model, method) {
     });
 }
 
-runTests(test, propertyName, createCpsFunction, successTestCps, errorTestCps);
+runTests.sequelizeV1(test, propertyName, createCpsFunction, successTestCps, errorTestCps);
+runTests.sequelizeV2(test, propertyName, createCpsFunction, successTestCps, errorTestCps);
