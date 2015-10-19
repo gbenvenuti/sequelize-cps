@@ -17,3 +17,29 @@ function errorTestCps(t, model, method) {
 
 runTests.sequelizeV1(test, propertyName, createCpsFunction, successTestCps, errorTestCps);
 runTests.sequelizeV2(test, propertyName, createCpsFunction, successTestCps, errorTestCps);
+
+test('patches sequalize', function(t){
+	t.plan(1);
+
+    var model = {
+            save: function(){
+                return {
+                    then: function(){
+
+                    }
+                }
+            },
+            sequelize: {
+                query: function(){
+                    return {
+                        then: function(){}
+                    }
+                }
+            }
+        };
+
+
+    createCpsFunction(model, 'save')(function(){});
+
+    t.equal(typeof model.sequelize.cps.query, 'function', 'added abbotted query to sequalize');
+});
