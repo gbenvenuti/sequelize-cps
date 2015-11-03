@@ -1,5 +1,6 @@
 var test = require('grape'),
     propertyName = 'cps',
+    entryPoint = require('../'),
     createCpsFunction = require('../createCpsFunction'),
     runTests = require('customulize/test/runTests');
 
@@ -21,25 +22,28 @@ runTests.sequelizeV2(test, propertyName, createCpsFunction, successTestCps, erro
 test('patches sequelize', function(t){
 	t.plan(1);
 
-    var model = {
-            save: function(){
-                return {
-                    then: function(){
-
-                    }
-                }
-            },
-            sequelize: {
-                query: function(){
+    var models = {
+            foo: {
+                Instance: function(){},
+                save: function(){
                     return {
-                        then: function(){}
+                        then: function(){
+
+                        }
+                    };
+                },
+                sequelize: {
+                    query: function(){
+                        return {
+                            then: function(){}
+                        };
                     }
                 }
             }
         };
 
 
-    createCpsFunction(model, 'save')(function(){});
+    entryPoint(models);
 
-    t.equal(typeof model.sequelize.cps.query, 'function', 'added abbotted query to sequelize');
+    t.equal(typeof models.foo.sequelize.cps.query, 'function', 'added abbotted query to sequelize');
 });
