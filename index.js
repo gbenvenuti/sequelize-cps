@@ -5,6 +5,9 @@ var customulize = require('customulize'),
 
 module.exports = function(models){
     var firstModel = models[Object.keys(models)[0]];
+    if (typeof firstModel === 'function') {
+        firstModel = new firstModel();
+    }
     if(firstModel && firstModel.sequelize && !firstModel.sequelize.cps){
         firstModel.sequelize.cps = {
             query: abbott(firstModel.sequelize.query.bind(firstModel.sequelize))
